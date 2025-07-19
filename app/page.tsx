@@ -1,3 +1,23 @@
+/*
+The /app directory contains all the routes, components, and logic for your application.
+This is where you'll be mostly working from.
+
+The /app/lib directory contains functions used in your application, 
+such as reusable utility functions and data fetching functions.
+
+The /app/ui directory contains all the UI components for your application, such as cards, tables, and forms.
+
+The /public directory contains all the static assets for your application, such as images.
+
+When you make page.tsx in the /app directory, 
+you're making the page for the home/root directory of your website.
+Other files within the app directory or its subdirectories are 
+not accessible to the clients.
+
+To make further routes, you create directories inside /app and then 
+make a new page.tsx inside those. You can create subdirectories inside those too.
+*/
+
 import AcmeLogo from '@/app/ui/acme-logo';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
