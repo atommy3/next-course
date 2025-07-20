@@ -1,3 +1,20 @@
+/*
+To get the values .env file required to connect to the database, I had to:
+1. Create a Github repository for this project
+2. Create a Vercel account
+3. Import the Github repository for this project
+4. Name the new Vercel project, then deploy it
+5. Go to the "Storage" tab, click "Create Database", then choose "Neon"
+6. Name the new database, then create it
+7. Connect to the new database
+8. Go to the ".env.local" tab, click "Show secret", then click "Copy Snippet"
+
+This file originally had 4 instances of 
+await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+which I had to delete to not get an error.
+This caused an error because neon automatically added uuid-ossp.
+*/
+
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
 import { invoices, customers, revenue, users } from '../lib/placeholder-data';
