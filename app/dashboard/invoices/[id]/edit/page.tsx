@@ -1,6 +1,7 @@
 import Form from '@/app/ui/invoices/edit-form';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
+import { notFound } from 'next/navigation';
 
 /*
 props.params is an object whose keys are
@@ -14,6 +15,20 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     fetchInvoiceById(id),
     fetchCustomers(),
   ]);
+
+  if (!invoice) {
+    /*
+    How notFound works:
+    First, you import notFound from 'next/navigation'.
+    Then, when you want to give a 404 not found HTTP response to the user,
+    you call notFound. It takes precedence over the general error case
+    handled in error.tsx.
+    Additionally, you can specify what content you want to be shown
+    on the page in this case by creating a file named not-found.tsx;
+    the React component exported in that file will be displayed.
+    */
+    notFound();
+  }
 
   return (
     <main>
