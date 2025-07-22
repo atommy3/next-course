@@ -6,7 +6,11 @@ import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
- 
+
+/*
+props.searchParams is an object whose keys are
+all of the query parameters of the URL.
+*/
 export default async function Page(props: {
   searchParams?: Promise<{
     query?: string;

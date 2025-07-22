@@ -7,10 +7,27 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
+import { createInvoice } from '@/app/lib/actions';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   return (
-    <form>
+    /*
+    Note: in HTML, the 'action' attribute of a form would normally be
+    the API endpoint to which the form would be submitted.
+    However in React, it's the function that processes the form's data.
+    React builds a POST API endpoint behind the scenes though.
+
+    A form is submitted when the button element with the type attribute
+    equal to "submit" is clicked (that is contained inside 
+    the Button component defined in this project).
+
+    A FormData object is passed to createInvoice when the form is submitted.
+    The FormData object is populated with the form's fields, 
+    which in this case are <select name="customerId">, <input name="amount">,
+    and <input name="status">. The fields' name attribute is used as the key,
+    and the field's value as the value in the FormData's key-value pairs.
+    */
+    <form action={createInvoice}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">

@@ -9,6 +9,7 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
+import { updateInvoice } from '@/app/lib/actions';
 
 export default function EditInvoiceForm({
   invoice,
@@ -17,8 +18,21 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm;
   customers: CustomerField[];
 }) {
+  /*
+  .bind is used to pre-fill the first argument(s) of a function.
+  In this case, it creates a new function where invoice.id is already supplied as the first argument. Equivalently:
+    const updateInvoiceWithId = (formData) => updateInvoice(invoice.id, formData);
+  
+  The first argument of .bind, null here, sets the this keyword of the function to the provided value.
+  It's irrelevant here since updateInvoice doesn't use the this keyword in its definition.
+
+  Using .bind is required here because in Next.js,
+  the action attribute of a form element expects a function that only has one parameter, a FormData object.
+  */
+  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+
   return (
-    <form>
+    <form action={updateInvoiceWithId}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
