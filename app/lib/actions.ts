@@ -167,6 +167,6 @@ export async function authenticate(
   }
 }
 
-export async function logOut() {
+export async function logout() {
   await signOut({ redirectTo: '/' });
 }

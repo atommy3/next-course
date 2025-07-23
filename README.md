@@ -37,6 +37,10 @@ In package.json, you should see a "scripts" property, which contains the options
 - ``$ pnpm dev``, which runs the development server
 - ``$ pnpm build``, which creates the production build
 
+To log in, user the following credentials:
+```
+username: user@nextmail.com
+password: 123456
 ---
 
 The rest of this README.md was automatically generated when the project was created.
