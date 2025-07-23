@@ -10,6 +10,8 @@ outside of where they are used, like is done here.
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { signIn, signOut } from '@/auth';
+import { AuthError } from 'next-auth';
 import postgres from 'postgres';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
@@ -137,4 +139,34 @@ export async function updateInvoice(
 export async function deleteInvoice(id: string) {
   await sql`DELETE FROM invoices WHERE id = ${id}`;
   revalidatePath('/dashboard/invoices');
+}
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  try {
+    /*
+    This tells Next to try to sign in with the Credentials provider
+    and pass the formData in to Credentials' authorize() function.
+    */
+    await signIn('credentials', formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      /*
+      You can read more about different types of NextAuth.js errors in the documentation.
+      */
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
+  }
+}
+
+export async function logOut() {
+  await signOut({ redirectTo: '/' });
 }

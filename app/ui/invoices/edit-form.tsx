@@ -160,7 +160,7 @@ export default function EditInvoiceForm({
           }
         </div>
 
-        <div id="status-message" aria-live="polite" aria-atomic="true">
+        <div id="error-message" aria-live="polite" aria-atomic="true">
           {state.message &&
             <p className="mt-2 text-sm text-red-500" key={state.message}>
               {state.message}
