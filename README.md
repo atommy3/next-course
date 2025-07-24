@@ -41,7 +41,7 @@ To log in, user the following credentials:
 ```
 username: user@nextmail.com
 password: 123456
----
+```
 
 The rest of this README.md was automatically generated when the project was created.
 
